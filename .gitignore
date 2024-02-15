@@ -1,0 +1,9 @@
+# Project exclude paths
+/.gradle/
+#output/*.csv
+#output/**/*.csv
+/build/*
+.idea/sonarlint
+.idea/jarRepositories.xml
+.ipynb_checkpoints/
+charts/

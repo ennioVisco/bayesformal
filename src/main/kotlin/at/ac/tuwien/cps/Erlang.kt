@@ -8,6 +8,8 @@ import eu.quanticol.moonlight.monitoring.spatialtemporal.SpatialTemporalMonitor
 import eu.quanticol.moonlight.space.LocationService
 import eu.quanticol.moonlight.statistics.StatisticalModelChecker
 import eu.quanticol.moonlight.util.MultiValuedTrace
+import java.io.File
+
 
 private const val RESULT = "_smc_grid_21x21_T_144.csv"
 
@@ -56,6 +58,8 @@ private fun <D> smc(
     val avg = filterAverage(stats)
     val `var` = filterVariance(stats)
     val str = RawTrajectoryExtractor(network.size())
+    val folder = outputFile(id, "avg", model).substringBeforeLast('/')
+    File(folder).mkdirs()
     DataWriter(outputFile(id, "avg", model), FileType.CSV, str).write(avg)
     DataWriter(outputFile(id, "var", model), FileType.CSV, str).write(`var`)
     logger.info("SMC results computed.")
@@ -63,6 +67,7 @@ private fun <D> smc(
 
 
 private fun outputFile(ext1: String, ext2: String, model: String): String {
+
     val trace = "output/$model/${ext1}_${ext2}_K${K.toInt()}$RESULT"
     logger.info { "Saving output in: $trace" }
     return trace

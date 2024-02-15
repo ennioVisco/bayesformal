@@ -7,3 +7,9 @@
 .idea/jarRepositories.xml
 .ipynb_checkpoints/
 charts/
+
+# Mac files
+.DS_Store
+
+# IntelliJ files
+.idea
